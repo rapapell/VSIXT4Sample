@@ -25,6 +25,7 @@ namespace VSIXT4Sample
   /// </remarks>
   [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
   [Guid(VSIXT4SamplePackage.PackageGuidString)]
+  [ProvideMenuResource("Menus.ctmenu", 1)]
   public sealed class VSIXT4SamplePackage : AsyncPackage
   {
     /// <summary>
@@ -46,6 +47,7 @@ namespace VSIXT4Sample
       // When initialized asynchronously, the current thread may be a background thread at this point.
       // Do any initialization that requires the UI thread after switching to the UI thread.
       await this.JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
+        await CodeGeneratorCmd.InitializeAsync(this);
     }
 
     #endregion
